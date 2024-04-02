@@ -1,69 +1,69 @@
 #!/usr/bin/python3
-"""
-This is the "Square"  module.
-This module provides a simple Square class with initialized size.
-Defaults size to 0. Raise error on invalid size inputs.
-Attribute position which takes a default (0, 0) tuple.
-Methods Getter and Setter properties for size and position.
-Method area returns size of area of the square.
-Method my_print prints the square using "#", moved over left and top using
-position tuple.
-Method __repr__ should return the string to print out the square.
-"""
+"""This only defines a class Square."""
 
 
 class Square:
-    """A class that defines a square by size.
-    Also defines position using a tuple, which defaults (0, 0).
-    Square can also get area, and print square using '#'.
-    When printing, using position, offset on top and left.
-    """
+    """This represents a square."""
+
     def __init__(self, size=0, position=(0, 0)):
+        """This initializes a new square.
+        Args:
+            size (int): The size of the new square.
+            position (int, int): This is the position of the new square.
+        """
         self.size = size
         self.position = position
 
     @property
     def size(self):
-        return self.__size
+        """To return the current size of the square."""
+        return (self.__size)
 
     @size.setter
-    def size(self, size):
-        if type(size) != int:
-            raise TypeError("size must be an integer")
-        if size < 0:
-            raise ValueError("size must be >= 0")
-        self.__size = size
+    def size(self, value):
+        if not isinstance(value, int):
+            raise TypeError("This size must be an integer")
+        elif value < 0:
+            raise ValueError
+        self.__size = value
 
     @property
     def position(self):
-        return self.__position
+        """This will return the current position of the square."""
+        return (self.__position)
 
     @position.setter
     def position(self, value):
-        if type(value) != tuple or len(value) != 2 or \
-           not all([type(i) == int for i in value]):
-            raise TypeError("position must be a tuple of 2 positive integers")
+        if (not isinstance(value, tuple) or
+                len(value) != 2 or
+                not all(isinstance(code, int) for code in value) or
+                not all(code >= 0 for code in value)):
+            raise TypeError("This position must be a tuple of 2 positive integers")
         self.__position = value
 
-    def __repr__(self):
-        return (self.get_str())
-
     def area(self):
-        return self.__size * self.__size
-
-    def get_str(self):
-        total = ""
-        if self.__size == 0:
-            total += "\n"
-            return total
-        for i in range(self.__position[1]):
-            total += "\n"
-        for i in range(self.__size):
-            total += (" " * self.__position[0])
-            total += ("#" * self.__size)
-            if i is not (self.__size - 1):
-                total += "\n"
-        return total
+        """This only eturns the current area of the square."""
+        return (self.__size * self.__size)
 
     def my_print(self):
-        print(self.get_str())
+        """Will print a square using the # character."""
+        if self.__size == 0:
+            print("")
+            return
+
+        [print("") for tit in range(0, self.__position[1])]
+        for tit in range(0, self.__size):
+            [print(" ", end="") for jeh in range(0, self.__position[0])]
+            [print("#", end="") for keh in range(0, self.__size)]
+            print("")
+
+    def __str__(self):
+        """This only define print() representation of a Square."""
+        if self.__size != 0:
+            [print("") for tit in range(0, self.__position[1])]
+        for tit in range(0, self.__size):
+            [print(" ", end="") for jeh in range(0, self.__position[0])]
+            [print("#", end="") for keh in range(0, self.__size)]
+            if tit != self.__size - 1:
+                print("")
+        return ("")
