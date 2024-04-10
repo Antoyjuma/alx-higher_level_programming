@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-"""Defines a name-printing function."""
+"""To define a name-printing function."""
 
 
 def say_my_name(first_name, last_name=""):
-    """Print a name.
+    """To print a name only.
 
     Args:
         first_name (str): The first name to print.
