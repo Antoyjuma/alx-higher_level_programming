@@ -1,13 +1,18 @@
 #!/usr/bin/python3
-"""Fetches a URL."""
-import urllib.request as request
+""" using urllib to fetch https://alx-intranet.hbtn.io/status """
 
+from urllib import request
 
 if __name__ == "__main__":
-    with request.urlopen("https://intranet.hbtn.io/status") as response:
-        if response.readable():
-            data = response.read()
-            print("Body response:")
-            print("\t- type: {}".format(type(data)))
-            print("\t- content: {}".format(data))
-            print("\t- utf8 content: {}".format(data.decode("utf-8")))
+    url = 'https://alx-intranet.hbtn.io/status'
+
+    # fetch the URL
+    with request.urlopen(url) as response:
+        # Read and decode the response body
+        response_body = response.read()
+
+        # Display the response body with tabulation
+        print("Body response:")
+        print("\t- type: {}".format(type(response_body)))
+        print("\t- content: {}".format(response_body))
+        print("\t- utf8 content: {}".format(response_body.decode('utf-8')))
